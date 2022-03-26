@@ -17,4 +17,14 @@ class HomeController extends Controller
         $this->data['title'] = "san pham";
         return view('clients.products', $this->data);
     }
+    public function getAdd()
+    {
+        $this->data['title'] = "them san pham";
+
+        return view('clients.add', $this->data);
+    }
+    public function postAdd(Request $request)
+    {
+        dd($request);
+    }
 }
