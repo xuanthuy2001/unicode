@@ -25,7 +25,7 @@
 
  @endenv
 
- <x-alert type = "warning " content = "dat hang thanh cong"/>
+ <x-alert type = "warning " content = "dat hang thanh cong" />
 
  {{--  <x-input.button />
  <x-forms.button />

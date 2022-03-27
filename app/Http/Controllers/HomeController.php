@@ -31,4 +31,15 @@ class HomeController extends Controller
     {
         dd($request);
     }
+    public function getArr()
+    {
+        $contentArr = [
+            'name' => "laravel 8.x",
+            'leson' => "khóa học lập trình Laravel",
+            'academy' => "Unicode academy",
+
+        ];
+
+        return $contentArr;
+    }
 }
