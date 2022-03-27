@@ -25,6 +25,12 @@
 
  @endenv
 
+ <x-alert type = "warning " content = "dat hang thanh cong"/>
+
+ {{--  <x-input.button />
+ <x-forms.button />
+ <x-lables.lable />
+ <x-divs.div />  --}}
 
  @endsection
 

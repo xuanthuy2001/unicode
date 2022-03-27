@@ -12,6 +12,8 @@
 
 @section('content')
 <h1>san pham</h1>
+
+<x-package-alert />
 @endsection
 
 
