@@ -27,4 +27,8 @@ class HomeController extends Controller
     {
         dd($request);
     }
+    public function putAdd(Request $request)
+    {
+        dd($request);
+    }
 }

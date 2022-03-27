@@ -15,6 +15,17 @@
  @include('clients.contents.slide')
  @include('clients.contents.about ')
 
+ @env ('producttions')
+
+ <p>moi trung producttions</p>
+ @elseenv('test')
+ <p>moi trung test</p>
+ @else
+ <p>moi trung dev</p>
+
+ @endenv
+
+
  @endsection
 
 
