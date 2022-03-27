@@ -1,10 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,8 +27,14 @@ Route::get('/demo-response', function () {
 
 Route::get('/lay-thong-tin', [HomeController::class, 'getArr']);
 Route::get('/demo_response', function () {
-      // $response = new Response('Học lập trình tại unicode', 200);
-      // $response = response('Học lập trình tại unicode', 404);
 
-      return new  Response('Học lập trình tại unicode', 404);
+      return view('clients.demo_test');
+})->name('demo_response');
+Route::post('demo_response', function (Request $request) {
+      if (!empty($request->username)) {
+
+            return back()->withInput()->with('mes', ' thanh cong');
+      }
+
+      return redirect(route('demo_response'))->with('mes', 'khong thanh cong');
 });
