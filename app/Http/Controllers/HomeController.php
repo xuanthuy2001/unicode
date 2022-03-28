@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,13 +28,13 @@ class HomeController extends Controller
 
 
 
-    public function postAdd(Request $request)
+    public function postAdd(ProductRequest $request)
     {
-        $rules = [
-            'product_name' => 'required|min:6',
-            'product_price' => 'required|integer',
+        // $rules = [
+        //     'product_name' => 'required|min:6',
+        //     'product_price' => 'required|integer',
 
-        ];
+        // ];
         // $message = [
         //     'product_name.required' => 'tên sản phẩm không được để trống',
         //     'product_name.min' => ' sản phẩm phải lớn hơn 6 ký tự',
@@ -41,12 +42,12 @@ class HomeController extends Controller
         //     'product_price.integer' => ' sản phẩm phải phải là số',
         // ];
 
-        $message = [
-            'required' => 'trường :attribute không được để trống',
-            'min' => ' trường :attribute  lớn hơn :min ký tự',
-            'integer' => 'trường :attribute  phải phải là số',
-        ];
-        $request->validate($rules, $message);
+        // $message = [
+        //     'required' => 'trường :attribute không được để trống',
+        //     'min' => ' trường :attribute  lớn hơn :min ký tự',
+        //     'integer' => 'trường :attribute  phải phải là số',
+        // ];
+        // $request->validate($rules, $message);
     }
 
 
