@@ -38,3 +38,4 @@ Route::post('demo_response', function (Request $request) {
 
       return redirect(route('demo_response'))->with('mes', 'khong thanh cong');
 });
+Route::get('download_img', [HomeController::class, 'downImg'])->name('downloadImg');
