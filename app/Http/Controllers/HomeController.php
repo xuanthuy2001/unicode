@@ -20,13 +20,37 @@ class HomeController extends Controller
     public function getAdd()
     {
         $this->data['title'] = "them san pham";
+        $this->data['err'] = "sai roi kia";
 
         return view('clients.add', $this->data);
     }
+
+
+
     public function postAdd(Request $request)
     {
-        dd($request);
+        $rules = [
+            'product_name' => 'required|min:6',
+            'product_price' => 'required|integer',
+
+        ];
+        // $message = [
+        //     'product_name.required' => 'tên sản phẩm không được để trống',
+        //     'product_name.min' => ' sản phẩm phải lớn hơn 6 ký tự',
+        //     'product_price.required' => 'giá sản phẩm không được để trống',
+        //     'product_price.integer' => ' sản phẩm phải phải là số',
+        // ];
+
+        $message = [
+            'required' => 'trường :attribute không được để trống',
+            'min' => ' trường :attribute  lớn hơn :min ký tự',
+            'integer' => 'trường :attribute  phải phải là số',
+        ];
+        $request->validate($rules, $message);
     }
+
+
+
     public function putAdd(Request $request)
     {
         dd($request);
@@ -53,7 +77,7 @@ class HomeController extends Controller
             //     $imagecontent = file_get_contents($image);
             //     echo $imagecontent;
             // }, $fileName);
-            return response() -> download($image);
+            return response()->download($image);
         }
     }
 }
