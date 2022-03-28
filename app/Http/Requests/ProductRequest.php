@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class ProductRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -43,5 +44,25 @@ class ProductRequest extends FormRequest
             'product_name' => 'Tên sản phẩm',
             'product_price' => 'Giá sản phẩm'
         ];
+    }
+    protected function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if ($validator->errors()->count() > 0) {
+                $validator->errors()->add('msg', 'đã có lỗi xảy ra');
+            }
+        });
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'create_at' => date('Y-m-d H:i:s'),
+        ]);
+    }
+
+    protected function failedAuthorization()
+    {
+        throw new AuthorizationException('bạn không có quyền truy cập');
     }
 }

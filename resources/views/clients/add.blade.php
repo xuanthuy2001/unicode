@@ -8,13 +8,10 @@
 <form action="" method="POST" name="">
 
 
-      @if ($errors->any())
-      <div class="alert alert-danger">
-            <ul>
-                  {{$err}}
-            </ul>
-      </div>
-      @endif
+      @error('msg')
+      <div class="alert alert-danger text-center ">{{ $message }} </div>
+
+      @enderror
 
 
 
