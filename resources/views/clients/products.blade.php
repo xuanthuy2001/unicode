@@ -11,9 +11,15 @@
 
 
 @section('content')
+
+
+@if(session('msg'))
+<div class="alert alert-info">
+      {{ session('msg')}}
+</div>
+@endif
 <h1>san pham</h1>
 
-<x-package-alert />
 @endsection
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductRequest extends FormRequest
 {
@@ -63,6 +65,8 @@ class ProductRequest extends FormRequest
 
     protected function failedAuthorization()
     {
-        throw new AuthorizationException('bạn không có quyền truy cập');
+        // throw new AuthorizationException('bạn không có quyền truy cập');
+        // throw new HttpResponseException(Redirect('/')->with('msg', 'bạn không có quyền truy cập')->with('type', 'danger'));
+        throw new HttpResponseException(abort(404));
     }
 }

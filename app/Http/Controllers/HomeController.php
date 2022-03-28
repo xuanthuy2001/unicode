@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -28,22 +30,45 @@ class HomeController extends Controller
 
 
 
-    public function postAdd(ProductRequest $request)
+    public function postAdd(Request $request)
     {
 
+        $rules = [
+            'product_name' => 'required|min:6',
+            'product_price' => 'required|integer',
+        ];
 
-        dd($request->all());
-        // $rules = [
-        //     'product_name' => 'required|min:6',
-        //     'product_price' => 'required|integer',
-
-        // ];
         // $message = [
         //     'product_name.required' => 'tên sản phẩm không được để trống',
         //     'product_name.min' => ' sản phẩm phải lớn hơn 6 ký tự',
         //     'product_price.required' => 'giá sản phẩm không được để trống',
         //     'product_price.integer' => ' sản phẩm phải phải là số',
         // ];
+        $message = [
+            'required' => 'trường :attribute không được để trống',
+            'min' => ' trường :attribute  lớn hơn :min ký tự',
+            'integer' => 'trường :attribute  phải phải là số',
+        ];
+
+        $attribute = [
+            'product_name' => 'Tên sản phẩm',
+            'product_price' => 'Giá sản phẩm',
+
+        ];
+
+        $validator =   Validator::make($request->all(), $rules, $message, $attribute);
+        // $validator->Validated();
+
+        if ($validator->fails()) {
+            $validator->errors()->add('msg', 'vui long kiem tra lai du lieu');
+
+
+            // return 'thất bại';
+        } else {
+            // return ' thanh cong';
+            return redirect()->route('product')->with('msg', 'thanh cong');
+        }
+        return back()->withErrors($validator);
 
         // $message = [
         //     'required' => 'trường :attribute không được để trống',

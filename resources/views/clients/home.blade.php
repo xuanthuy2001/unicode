@@ -11,6 +11,13 @@
 
 
 @section('content')
+            @if(session('msg'))
+            <div class="alert alert-info">
+                  {{ session('msg')}}
+            </div>
+            @endif
+
+
 <h1>trang chu</h1>
 @include('clients.contents.slide')
 @include('clients.contents.about ')
@@ -39,7 +46,7 @@
 {{-- <p>
 
       <a href="{{Route('downloadImg').'?image=https://icdn.dantri.com.vn/zoom/540_360/2022/03/28/ukraineafp-1648423318555.jpg'}}"
-            class="
+class="
 btn btn-primary"> down anh</a>
 </p> --}}
 
@@ -53,10 +60,10 @@ btn btn-primary"> down anh</a>
 
 @section('css')
 <style>
-      img {
-            max-width: 100%;
-            height: auto;
-      }
+img {
+      max-width: 100%;
+      height: auto;
+}
 </style>
 @endsection
 
