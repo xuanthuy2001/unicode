@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -13,6 +14,9 @@ class HomeController extends Controller
     public function index()
     {
         $this->data['title'] = "hoc lap trinh";
+
+        $users = DB::select('SELECT * from users');
+
         return view('clients.home', $this->data);
     }
     public function products()

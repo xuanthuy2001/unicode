@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,10 @@ Route::post('demo_response', function (Request $request) {
       return redirect(route('demo_response'))->with('mes', 'khong thanh cong');
 });
 Route::get('download_img', [HomeController::class, 'downImg'])->name('downloadImg');
+
+
+
+// người dùng
+Route::prefix('users')->group(function () {
+      Route::get('/', [UsersController::class, 'index']);
+});
