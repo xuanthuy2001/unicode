@@ -44,6 +44,11 @@ Route::get('download_img', [HomeController::class, 'downImg'])->name('downloadIm
 
 
 // người dùng
-Route::prefix('users')->group(function () {
-      Route::get('/', [UsersController::class, 'index']);
+Route::prefix('users')->name('users.')->group(function () {
+      Route::get('/', [UsersController::class, 'index'])->name('index');
+      Route::get('/add', [UsersController::class, 'add'])->name('add');
+      Route::post('/add', [UsersController::class, 'storeAdd'])->name('store');
+      Route::get('/edit/{id}', [UsersController::class, 'getEdit'])->name('edit');
+      Route::post('update', [UsersController::class, 'postEdit'])->name('postEdit');
+      Route::get('/delete/{id}', [UsersController::class, 'delete'])->name('delete');
 });
